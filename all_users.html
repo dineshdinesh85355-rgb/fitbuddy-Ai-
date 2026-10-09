@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+FitBuddy – Admin Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+
+{% if requires_login %}
+
+
+<section class="card narrow">
+
+
+    <span class="eyebrow">
+        ADMIN
+    </span>
+
+
+    <h1>
+        Admin Dashboard
+    </h1>
+
+
+    <p>
+        Enter the admin password configured
+        in your .env file.
+    </p>
+
+
+    <form
+        method="get"
+        action="/admin"
+    >
+
+        <label>
+
+            Password
+
+            <input
+                type="password"
+                name="password"
+                required
+            >
+
+        </label>
+
+
+        <br>
+
+
+        <button
+            class="button"
+            type="submit"
+        >
+
+            Open Dashboard
+
+        </button>
+
+    </form>
+
+
+</section>
+
+
+{% else %}
+
+
+<section class="page-heading">
+
+
+    <span class="eyebrow">
+        ADMIN DASHBOARD
+    </span>
+
+
+    <h1>
+        All Users and Plans
+    </h1>
+
+
+    <p>
+        {{ users|length }}
+        user record(s)
+    </p>
+
+
+</section>
+
+
+
+{% if users %}
+
+
+<div class="table-wrap">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+    <th>
+        User
+    </th>
+
+    <th>
+        Profile
+    </th>
+
+    <th>
+        Goal
+    </th>
+
+    <th>
+        Original Plan
+    </th>
+
+    <th>
+        Updated Plan
+    </th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+{% for user in users %}
+
+
+<tr>
+
+
+<td>
+
+<strong>
+    {{ user.name }}
+</strong>
+
+<br>
+
+<small>
+    {{ user.user_id }}
+</small>
+
+</td>
+
+
+
+<td>
+
+{{ user.age }} years
+
+<br>
+
+{{ user.weight }} kg
+
+<br>
+
+{{ user.intensity|title }}
+
+</td>
+
+
+
+<td>
+
+{{ user.goal }}
+
+</td>
+
+
+
+<td>
+
+<pre class="small-plan">
+{{ user.original_plan }}
+</pre>
+
+</td>
+
+
+
+<td>
+
+{% if user.updated_plan %}
+
+<pre class="small-plan">
+{{ user.updated_plan }}
+</pre>
+
+{% else %}
+
+<span class="muted">
+No update yet
+</span>
+
+{% endif %}
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+{% else %}
+
+
+<section class="card">
+
+<p>
+No users have been created yet.
+</p>
+
+</section>
+
+
+{% endif %}
+
+
+{% endif %}
+
+
+{% endblock %}

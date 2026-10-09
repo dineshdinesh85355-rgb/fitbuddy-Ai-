@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+FitBuddy – Your Plan
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="page-heading">
+
+    <span class="eyebrow">
+        PERSONALIZED RESULT
+    </span>
+
+    <h1>
+        {{ message }}
+    </h1>
+
+</section>
+
+
+
+<section class="profile card">
+
+
+    <div>
+
+        <span>
+            Name
+        </span>
+
+        <strong>
+            {{ user.name }}
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            User ID
+        </span>
+
+        <strong>
+            {{ user.user_id }}
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Age
+        </span>
+
+        <strong>
+            {{ user.age }}
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Weight
+        </span>
+
+        <strong>
+            {{ user.weight }} kg
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Goal
+        </span>
+
+        <strong>
+            {{ user.goal }}
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <span>
+            Intensity
+        </span>
+
+        <strong>
+            {{ user.intensity|title }}
+        </strong>
+
+    </div>
+
+
+</section>
+
+
+
+<section class="card">
+
+
+    <div class="section-title">
+
+        <h2>
+
+            {% if updated %}
+
+                Updated 7-Day Plan
+
+            {% else %}
+
+                7-Day Workout Plan
+
+            {% endif %}
+
+        </h2>
+
+
+        <span class="badge">
+            Gemini AI
+        </span>
+
+    </div>
+
+
+    <pre class="plan">{{ plan }}</pre>
+
+
+</section>
+
+
+
+<section class="card tip">
+
+    <h2>
+        Nutrition / Recovery Tip
+    </h2>
+
+    <p>
+        {{ tip }}
+    </p>
+
+</section>
+
+
+
+<section class="card">
+
+    <h2>
+        Improve This Plan
+    </h2>
+
+    <p class="muted">
+
+        Tell FitBuddy what you would like to change.
+        Example: "Include another recovery day."
+
+    </p>
+
+
+    <form
+        action="/submit-feedback"
+        method="post"
+    >
+
+        <input
+            type="hidden"
+            name="user_id"
+            value="{{ user.user_id }}"
+        >
+
+
+        <textarea
+            name="feedback"
+            required
+            minlength="3"
+            maxlength="1000"
+            placeholder="Describe a reasonable change..."
+        ></textarea>
+
+
+        <button
+            class="button"
+            type="submit"
+        >
+
+            Update Plan
+
+        </button>
+
+    </form>
+
+</section>
+
+
+
+<a
+    class="text-link"
+    href="/"
+>
+
+    ← Create Another Plan
+
+</a>
+
+
+{% endblock %}

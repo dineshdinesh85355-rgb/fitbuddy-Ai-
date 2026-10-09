@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}
+FitBuddy – AI Fitness Plan Generator
+{% endblock %}
+
+
+{% block content %}
+
+
+<section class="hero">
+
+    <div>
+
+        <span class="eyebrow">
+            AI FITNESS PLANNER
+        </span>
+
+        <h1>
+            Build a plan that fits your routine.
+        </h1>
+
+        <p>
+            Generate a structured 7-day wellness workout
+            plan and a practical nutrition or recovery tip.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<section class="card">
+
+    <h2>
+        Enter Your Details
+    </h2>
+
+
+    <form
+        action="/generate-workout"
+        method="post"
+        id="planForm"
+    >
+
+
+        <div class="grid">
+
+
+            <label>
+
+                Name
+
+                <input
+                    type="text"
+                    name="username"
+                    required
+                    minlength="2"
+                    maxlength="120"
+                    placeholder="Enter your name"
+                >
+
+            </label>
+
+
+
+            <label>
+
+                User ID
+
+                <input
+                    type="text"
+                    name="user_id"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    placeholder="Example: FB001"
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Age
+
+                <input
+                    type="number"
+                    name="age"
+                    required
+                    min="13"
+                    max="100"
+                    placeholder="18"
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Weight (kg)
+
+                <input
+                    type="number"
+                    name="weight"
+                    required
+                    min="20"
+                    max="500"
+                    step="0.1"
+                    placeholder="60"
+                >
+
+            </label>
+
+
+
+            <label>
+
+                Fitness Goal
+
+                <select
+                    name="goal"
+                    required
+                >
+
+                    <option value="">
+                        Select a goal
+                    </option>
+
+                    <option>
+                        General wellness
+                    </option>
+
+                    <option>
+                        Strength and fitness
+                    </option>
+
+                    <option>
+                        Cardio fitness
+                    </option>
+
+                    <option>
+                        Flexibility and mobility
+                    </option>
+
+                    <option>
+                        Weight management
+                    </option>
+
+                </select>
+
+            </label>
+
+
+
+            <label>
+
+                Workout Intensity
+
+                <select
+                    name="intensity"
+                    required
+                >
+
+                    <option value="">
+                        Select intensity
+                    </option>
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option value="medium">
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                </select>
+
+            </label>
+
+
+        </div>
+
+
+        <div class="notice">
+
+            FitBuddy provides general wellness guidance.
+            Progress gradually and stop activity if you
+            experience pain, dizziness, faintness or unusual
+            shortness of breath.
+
+        </div>
+
+
+        <button
+            class="button"
+            type="submit"
+        >
+
+            Generate 7-Day Plan
+
+        </button>
+
+
+    </form>
+
+</section>
+
+
+{% endblock %}
